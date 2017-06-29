@@ -8,16 +8,7 @@ namespace SolidExercices
     public class Calculator
     {
         
-        //Gestion des opérations par un dictionnaire
-
-        readonly Dictionary<string, Func<double, double, double>> dictionary = new Dictionary<string, Func<double, double, double>>
-        {
-            {"+", (a, b) => a + b},
-            {"/", (a, b) => a / b},
-            {"x", (a, b) => a * b},
-            {"-", (a, b) => a - b}
-
-        };
+        Operator _operatorCalcule= new Operator();
 
         public double Calculate(string operation)
         {
@@ -34,7 +25,7 @@ namespace SolidExercices
 
 
 
-            foreach (var @operator in dictionary)
+            foreach (var @operator in _operatorCalcule.Dictionary)
             {
                 if (operation.Contains(@operator.Key))
                 {
