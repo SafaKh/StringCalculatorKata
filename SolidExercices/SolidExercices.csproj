@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="CalculatorTrainer.cs" />
+    <Compile Include="OperationGenerator.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
