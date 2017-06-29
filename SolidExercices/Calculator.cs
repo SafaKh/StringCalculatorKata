@@ -7,11 +7,23 @@ namespace SolidExercices
 {
     public class Calculator
     {
+        
+        //Gestion des opérations par un dictionnaire
+
+        readonly Dictionary<string, Func<double, double, double>> dictionary = new Dictionary<string, Func<double, double, double>>
+        {
+            {"+", (a, b) => a + b},
+            {"/", (a, b) => a / b},
+            {"x", (a, b) => a * b},
+            {"-", (a, b) => a - b}
+
+        };
+
         public double Calculate(string operation)
         {
 
-             double result = 0;
-             string[] substrings = operation.Split('+', '-', '/', 'x');
+            double result = 0;
+            string[] substrings = operation.Split('+', '-', '/', 'x');
              
 
             //Gestions des exceptions 
@@ -20,16 +32,7 @@ namespace SolidExercices
                 throw new ArgumentException(String.Format("{0} n'est pas une opération", operation));
             }
 
-            //Gestion des opérations par un dictionnaire
-            Func<double, double, double> addition = (a, b) => a + b;
-            Func<double, double, double> divide = (a, b) => a / b;
-            Func<double, double, double> multiply = (a, b) => a * b;
-            Func<double, double, double> substract = (a, b) => a - b;
-            Dictionary<string, Func<double, double, double>> dictionary = new Dictionary<string, Func<double, double, double>>();
-            dictionary.Add("+", addition);
-            dictionary.Add("/", divide);
-            dictionary.Add("x", multiply);
-            dictionary.Add("-", substract);
+
 
             foreach (var @operator in dictionary)
             {
