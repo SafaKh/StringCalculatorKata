@@ -12,7 +12,6 @@ namespace SolidExercices.Tests
             var calculator = new Calculator();
             var result = calculator.Calculate("1+2,3");
             Check.That(result).IsEqualTo(3.3);
-            Check.ThatCode(() => calculator.Calculate("3+1,5+3")).Throws<ArgumentException>();
         }
         public void CalculateADivide()
         {
@@ -32,7 +31,8 @@ namespace SolidExercices.Tests
             var result = calculator.Calculate("3-1,5");
 
             Check.That(result).IsEqualTo(1.5);
-            Check.ThatCode(() => calculator.Calculate("3-1,5-3")).Throws<ArgumentException>();
+            Check.ThatCode(() => calculator.Calculate("AB")).Throws<ArgumentException>();
+            Check.ThatCode(() => calculator.Calculate("a+2")).Throws<ArgumentException>();
         }
     }
 }

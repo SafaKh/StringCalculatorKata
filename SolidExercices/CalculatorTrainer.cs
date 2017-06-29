@@ -22,6 +22,8 @@ namespace SolidExercices
                     Console.WriteLine("ERROR: " + e.Message);
                 }
             }
+            Console.ReadKey();
         }
+      
     }
 }

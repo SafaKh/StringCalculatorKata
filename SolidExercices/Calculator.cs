@@ -14,16 +14,13 @@ namespace SolidExercices
              string[] substrings = operation.Split('+', '-', '/', 'x');
              
 
-             if(substrings.Length > 2)
-             {
-                throw new ArgumentException(String.Format("{0} n'est pas une opération à deux opérateur", operation));
-             }
+            //Gestions des exceptions 
             if (substrings.Length==1)
             {
                 throw new ArgumentException(String.Format("{0} n'est pas une opération", operation));
             }
 
-            //Gestion des opérations
+            //Gestion des opérations par un dictionnaire
             Func<double, double, double> addition = (a, b) => a + b;
             Func<double, double, double> divide = (a, b) => a / b;
             Func<double, double, double> multiply = (a, b) => a * b;
@@ -38,6 +35,14 @@ namespace SolidExercices
             {
                 if (operation.Contains(@operator.Key))
                 {
+                    if (@operator.Key == "/" && substrings.Contains("0"))
+                    {
+                        if (substrings[0] != "0")
+                        {
+                            throw new ArgumentException(String.Format("{0} est une division par 0", operation));
+                        }
+                    }
+
                     int i = 1;
                     foreach (string operateur in substrings)
                     {
@@ -50,7 +55,7 @@ namespace SolidExercices
                             }
                             catch
                             {
-                                throw new ArgumentException(String.Format("{0} n'est pas une opération", operation));
+                                throw new ArgumentException(String.Format("{0} n'est pas une chiffre", operateur));
                             }
                         }
                         else
