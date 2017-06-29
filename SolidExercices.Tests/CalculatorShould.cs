@@ -9,7 +9,7 @@ namespace SolidExercices.Tests
         public void CalculateASum()
         {
             var calculator = new Calculator();
-            var result = calculator.Calculate("1+2,3");
+            var result = calculator.Calculate("1+2,3+2");
             Check.That(result).IsEqualTo(3.3);
         }
         public void CalculateADivide()
@@ -23,6 +23,7 @@ namespace SolidExercices.Tests
             var calculator = new Calculator();
             var result = calculator.Calculate("2x3");
             Check.That(result).IsEqualTo(6);
+
         }
         public void CalculateASubstract()
         {

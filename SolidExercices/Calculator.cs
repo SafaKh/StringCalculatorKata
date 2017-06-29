@@ -13,9 +13,9 @@ namespace SolidExercices
             
                 double result = 0;
                 string[] substrings = operation.Split('+', '-', '/', 'x');
-                if (substrings.Length == 2)
+                if(substrings.Length == 2)
                 {
-                    Console.WriteLine("{0} n'est pas une opération à deux opérateur", operation);
+                   throw new ArgumentException(String.Format("{0} n'est pas une opération à deux opérateur", operation));
                 }
                 if (operation.Contains("+"))
                 {
