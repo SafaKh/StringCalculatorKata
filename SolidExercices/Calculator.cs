@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace SolidExercices
 {
@@ -17,11 +18,12 @@ namespace SolidExercices
              {
                 throw new ArgumentException(String.Format("{0} n'est pas une opération à deux opérateur", operation));
              }
+            if (substrings.Length==1)
+            {
+                throw new ArgumentException(String.Format("{0} n'est pas une opération", operation));
+            }
 
-             //Convertion des opérateurs 
-             double oper1 = Convert.ToDouble(substrings.GetValue(0));
-             double oper2 = Convert.ToDouble(substrings.GetValue(1));
-
+            //Gestion des opérations
             Func<double, double, double> addition = (a, b) => a + b;
             Func<double, double, double> divide = (a, b) => a / b;
             Func<double, double, double> multiply = (a, b) => a * b;
@@ -36,7 +38,28 @@ namespace SolidExercices
             {
                 if (operation.Contains(@operator.Key))
                 {
-                   result= @operator.Value(oper1, oper2);
+                    int i = 1;
+                    foreach (string operateur in substrings)
+                    {
+
+                        if (i == 1)
+                        {
+                            try
+                            {
+                                result = Convert.ToDouble(operateur);
+                            }
+                            catch
+                            {
+                                throw new ArgumentException(String.Format("{0} n'est pas une opération", operation));
+                            }
+                        }
+                        else
+                        {
+                            result = @operator.Value(result, Convert.ToDouble(operateur));
+                        }
+                        i++;
+                    }
+
                 }
             }
 
